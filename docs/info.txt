@@ -1,0 +1,62 @@
+Mozliwe problemy z docker/k8s:
+- czy potrzebuje docker id do tworzenia obrazow dockerowych?
+
+make sure you run commands as root
+
+https://minikube.sigs.k8s.io/docs/start/
+https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
+https://kubernetes.github.io/ingress-nginx/deploy/
+
+https://stackoverflow.com/questions/69517855/microk8s-dashboard-using-nginx-ingress-via-http-not-working-error-no-matches
+
+kubectl version
+kubectl get pods
+kubectl apply -f posts.yaml
+
+docker-user
+lodowka22
+Docker User
+
+Setup redirecting. Every time developer will try navigate to microservices.dev the browser will not redirest to online website but to your local machine:
+/ets/hosts
+sudo minikube ip -> gives you ip
+192.168.49.2 microservices.dev
+
+sudo sysctl fs.protected_regular=0 
+
+
+This is a question of security. In official docker documentation written clearly about the risks.
+
+As per documentation -
+
+Docker allows you to share a directory between the Docker host and a guest container; and it allows you to do so without limiting the access rights of the container. This means that you can start a container where the /host directory is the / directory on your host; and the container can alter your host filesystem without any restriction.
+
+To solve your problem you can follow these steps:
+
+Add new User
+
+adduser newUser
+usermod -aG sudo newUser
+su - newUser
+
+Login to the newly created User
+
+su - newUser
+
+Add User to the Docker Group
+
+sudo groupadd docker
+sudo usermod -aG docker $USER
+
+Relogin and the start minikube with this following commands
+
+minikube start --driver=docker
+
+Verify minikube is running
+
+docker ps
+
+Here is a github issue you may have a look.
+
+Updating my answer as it is causing confusion if this steps will solve the security issues
+This steps will solve the error you were facing when you were trying to start minikube. But this steps won't solve the security issues because docker group grants privileges equivalent to the root user. To run docker without root privilege aka rootless mode you need to follow this
