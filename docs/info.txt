@@ -25,6 +25,9 @@ sudo minikube ip -> gives you ip
 sudo sysctl fs.protected_regular=0 
 
 
+sudo kubectl create secret generic jwt-secret --from-literal=JWT_KEY=sov5n72m9vthse47y2985yt209m348yth0re8tsyn4p98
+sudo kubectl get secrets
+
 This is a question of security. In official docker documentation written clearly about the risks.
 
 As per documentation -
