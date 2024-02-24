@@ -63,3 +63,20 @@ Here is a github issue you may have a look.
 
 Updating my answer as it is causing confusion if this steps will solve the security issues
 This steps will solve the error you were facing when you were trying to start minikube. But this steps won't solve the security issues because docker group grants privileges equivalent to the root user. To run docker without root privilege aka rootless mode you need to follow this
+
+
+If mongoose in memory server for testing is not working use this: 
+https://github.com/nodkz/mongodb-memory-server/issues/480
+wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb
+sudo dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb
+
+
+npm publish --access public
+
+
+
+
+sudo minikube start --force
+sudo skaffold dev
+
+
